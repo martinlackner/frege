@@ -1,6 +1,6 @@
 # A Python implementation of Frege's voting method
 
-For a detailed description of Frege's voting method as well as the modified Frege method, see the paper by Harrenstein, Lackner, and Lackner (2019).
+For a detailed description of Frege's voting method as well as the modified Frege method, see the research paper by Harrenstein, Lackner, and Lackner [1].
 
 ## How-to
 For a fixed electorate:
@@ -24,6 +24,11 @@ modfrege(profiles, verbose=True)
 
 Further examples can be found in frege/examples.py.
 
+
+## Bias experiments
+
+The file [bias-experiments.py](bias-experiments.py) contains the code for the experiments in "A Mathematical Analysis of an Election System Proposed by Gottlob Frege" [1], Section 6. This code requires [apportionment.py](https://github.com/martinlackner/apportionment/blob/master/apportionment.py) from https://github.com/martinlackner/apportionment. 
+
 ## References
 
-Paul Harrenstein, Marie-Louise Lackner, and Martin Lackner. *A Mathematical Analysis of an Election System Proposed by Gottlob Frege*. 2019.
+[1] Paul Harrenstein, Marie-Louise Lackner, and Martin Lackner. *A Mathematical Analysis of an Election System Proposed by Gottlob Frege*. 2019.
