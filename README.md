@@ -27,7 +27,7 @@ Further examples can be found in frege/examples.py.
 
 ## Bias experiments
 
-The file [bias-experiments.py](bias-experiments.py) contains the code for the experiments in "A Mathematical Analysis of an Election System Proposed by Gottlob Frege" [1], Section 6. This code requires [apportionment.py](https://github.com/martinlackner/apportionment/blob/master/apportionment.py) from https://github.com/martinlackner/apportionment. 
+The file [bias-experiments.py](bias-experiments.py) contains the code for the experiments in "A Mathematical Analysis of an Election System Proposed by Gottlob Frege" [1], Section 5.3. This code requires [apportionment.py](https://github.com/martinlackner/apportionment/blob/master/apportionment.py) from https://github.com/martinlackner/apportionment. 
 
 ## References
 
