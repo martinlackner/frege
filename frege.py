@@ -1,12 +1,13 @@
+from __future__ import print_function
 import math
 import string
-from gmpy2 import mpq as mpq
+from fractions import Fraction
 
 
 # print formated latex table
 def print_latex(aggrscore, population, cands, r,
                 representative, modifiedfrege):
-    string = str(r+1) + " & "
+    string = str(r + 1) + " & "
     for score in aggrscore:
         string += str(score) + " & "
     if modifiedfrege:
@@ -15,7 +16,7 @@ def print_latex(aggrscore, population, cands, r,
         string += cands[representative] + " & "
         string += str(sum(aggrscore) // len(population))
     string += "\\\\"
-    print string
+    print(string)
 
 
 # Frege's voting method
@@ -63,7 +64,7 @@ def frege(population, k=0, cands=string.ascii_lowercase, verbose=False,
 
         if modifiedfrege:
             # normalize
-            aggrscore = [a + mpq(b, sum(p)) for a, b in zip(aggrscore, p)]
+            aggrscore = [a + Fraction(b, sum(p)) for a, b in zip(aggrscore, p)]
         else:
             aggrscore = [a + b for a, b in zip(aggrscore, p)]
         maximum = max(aggrscore)
@@ -80,26 +81,30 @@ def frege(population, k=0, cands=string.ascii_lowercase, verbose=False,
         if verbose:
             if modifiedfrege:
                 if r == 0:
-                    print "round : chosen representative | aggregated scores"
-                print r+1, ":",  cands[representative], '|',
-                print ', '.join(map(str, aggrscore))
+                    print("round : chosen representative | aggregated scores")
+                print(r + 1, ":", cands[representative], '|', end="")
+                print(', '.join(map(str, aggrscore)))
             else:
                 if r == 0:
-                    print "round : chosen representative | aggregated scores",
-                    print " | cost of winning"
-                print r+1, ":", cands[representative], '|',
-                print ', '.join(map(str, aggrscore)), '|',
-                print int(sum(aggrscore) // len(p))
+                    print("round : chosen representative | aggregated scores",
+                          end="")
+                    print(" | cost of winning")
+                print(r + 1, ":", cands[representative], '|', end="")
+                print(', '.join(map(str, aggrscore)), '|', end="")
+                print(int(sum(aggrscore) // len(p)))
 
         if checkquota:
             n = sum(p)
             for i in range(len(p)):
-                if ((victories[i] > math.ceil(float(p[i]) * (r+1) / n) or
-                     victories[i]+1 < math.floor(float(p[i]) * (r+1) / n))):
-                    print "round", r+1, "for profile", p, ":"
-                    print "   quota of candidate", cands[i], "is",
-                    print float(p[i])*(r+1)/n, "but won in",
-                    print victories[i], "rounds"
+                upperquota = (
+                    victories[i] <= math.ceil(float(p[i]) * (r + 1) / n))
+                lowerquota = (
+                    victories[i] + 1 >= math.floor(float(p[i]) * (r + 1) / n))
+                if (not lowerquota or not upperquota):
+                    print("round", r + 1, "for profile", p, ":")
+                    print("   quota of candidate", cands[i], "is", end="")
+                    print(float(p[i]) * (r + 1) / n, "but won in", end="")
+                    print(victories[i], "rounds")
 
         if modifiedfrege:
             aggrscore[representative] -= 1
