@@ -1,5 +1,7 @@
 # A Python implementation of Frege's voting method
 
+[![DOI](https://zenodo.org/badge/191782583.svg)](https://zenodo.org/badge/latestdoi/191782583)
+
 For a detailed description of Frege's voting method as well as the modified Frege method, see the research paper by Harrenstein, Lackner, and Lackner [1].
 
 ## How-to
