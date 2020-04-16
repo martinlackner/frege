@@ -29,8 +29,8 @@ Further examples can be found in [examples.py](examples.py), all of which are de
 
 ## Comments
 
-* This module requires Python 2.7 or 3.6+.
-* The file [bias-experiments.py](bias-experiments.py) contains the code for the experiments in "A Mathematical Analysis of an Election System Proposed by Gottlob Frege" [1], Section 5.3.
+* Requires Python 2.7 or 3.6+. The module [gmpy2](https://gmpy2.readthedocs.io/) is optional. If gmpy2 is not available, the much slower Python module [fractions](https://docs.python.org/2/library/fractions.html) is used to compute fractions.
+* The file [bias.py](bias.py) contains the code for the experiments in "A Mathematical Analysis of an Election System Proposed by Gottlob Frege" [1], Section 5.3.
 
 ## References
 
