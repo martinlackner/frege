@@ -1,12 +1,24 @@
+""" Frege's method and the modified Frege method
+as described in
+Paul Harrenstein, Marie-Louise Lackner, and Martin Lackner.
+*A Mathematical Analysis of an Election System Proposed by
+Gottlob Frege*. To appear in Erkenntnis. 2020.
+Preprint: https://arxiv.org/abs/1907.03643
+"""
+
 from __future__ import print_function
 import math
 import string
-from fractions import Fraction
+try:
+    from gmpy2 import mpq as Fraction
+except ImportError:
+    # slower
+    from fractions import Fraction
 
 
-# print formated latex table
 def print_latex(aggrscore, population, cands, r,
                 representative, modifiedfrege):
+    """print formated latex table"""
     string = str(r + 1) + " & "
     for score in aggrscore:
         string += str(score) + " & "
@@ -19,24 +31,26 @@ def print_latex(aggrscore, population, cands, r,
     print(string)
 
 
-# Frege's voting method
-# population .......... either a list of (not necessarily normalized) plurality
-#                        scores (for a fixed electorate),
-#                       or a list of k such lists (variable electorate)
-# k ................... (optional) number of rounds [default: len(poulation)]
-# cands ............... (optional) names of candidates
-# verbose ............. (optional) method outputs scores and
-#                       chosen representatives
-# latextable .......... (optional) method prints latex table with scores
-#                       and chosen representatives
-# modifiedfrege ....... (optional) use Frege's modfied method instead
-# checkquota .......... (optional) output if lower or upper quota
-#                       violated at any point
-# tiebreakingallowed .. (optional) if False, return None if tie-breaking
-#                       is required in any round
 def frege(population, k=0, cands=string.ascii_lowercase, verbose=False,
           latextable=False, modifiedfrege=False, checkquota=False,
           tiebreakingallowed=True):
+    """
+    Frege's voting method
+    population .......... either a list of (not necessarily normalized)
+                          plurality scores (for a fixed electorate),
+                          or a list of k such lists (variable electorate)
+    k ................... (optional) number of rounds [default: len(poulation)]
+    cands ............... (optional) names of candidates
+    verbose ............. (optional) method outputs scores and
+                          chosen representatives
+    latextable .......... (optional) method prints latex table with scores
+                          and chosen representatives
+    modifiedfrege ....... (optional) use Frege's modfied method instead
+    checkquota .......... (optional) output if lower or upper quota
+                          violated at any point
+    tiebreakingallowed .. (optional) if False, return None if tie-breaking
+                          is required in any round
+    """
     if k == 0:
         k = len(population)
 
@@ -114,8 +128,8 @@ def frege(population, k=0, cands=string.ascii_lowercase, verbose=False,
     return victories
 
 
-# modified Frege method
 def modfrege(population, k=0, cands=string.ascii_lowercase, verbose=False,
              latextable=False, checkquota=False, tiebreakingallowed=True):
+    """modified Frege method"""
     return frege(population, k, cands, verbose,
                  latextable, True, checkquota, tiebreakingallowed)

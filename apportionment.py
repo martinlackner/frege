@@ -3,11 +3,14 @@ Martin Lackner
 https://github.com/martinlackner/apportionment/
 """
 
-
 from __future__ import print_function, division
 import string
 import math
-from fractions import Fraction
+try:
+    from gmpy2 import mpq as Fraction
+except ImportError:
+    # slower
+    from fractions import Fraction
 
 
 METHODS = ["quota", "largest_remainder", "dhondt", "saintelague",

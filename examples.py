@@ -1,3 +1,10 @@
+""" Examples from
+Paul Harrenstein, Marie-Louise Lackner, and Martin Lackner.
+*A Mathematical Analysis of an Election System Proposed by
+Gottlob Frege*. To appear in Erkenntnis. 2020.
+Preprint: https://arxiv.org/abs/1907.03643
+"""
+
 from __future__ import print_function
 from frege import frege, modfrege
 import apportionment
@@ -17,7 +24,7 @@ print()
 print("************************************************")
 print("Example 2 (Frege's original method)")
 profile = [1, 1, 1, 1, 1, 5]
-k = 10
+k = 17
 print("input (fixed electorate):    ", profile)
 print("rounds:                      ", k)
 print("representatives distribution:", frege(profile, k))
